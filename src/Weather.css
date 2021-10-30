@@ -53,3 +53,6 @@
 .Weather .weather-forecast-temperatures {
   font-size: 13px;
 }
+.Weather small{
+  font-size: 11px;
+}
