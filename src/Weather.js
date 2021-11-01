@@ -1,25 +1,26 @@
-import React, {useState} from "react"; //10. Import useState
+import React, {useState} from "react"; 
+import FormattedDate from "./FormattedDate"; //4. Import FormattedDate into Weather component
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props){
-    const [weatherData, setWeatherData] = useState({ready: false}); //21. Create single useState that will have object w/ all data
+    const [weatherData, setWeatherData] = useState({ready: false}); 
     
     function handleResponse(response){
         console.log(response.data);
-        setWeatherData({ //22. Call object w/ all data for setWeatherData and set to API path
-            ready: true, //28. Add ready: true so that if(weatherData.ready) runs
+        setWeatherData({ 
+            ready: true, 
             temperature: response.data.main.temp,
             wind: response.data.wind.speed,
             city: response.data.name,
             humidity: response.data.main.humidity,
-            date: "Sunday, October 30",
+            date: new Date(response.data.dt * 1000), //1. Store API date 
             icon: "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
             description: response.data.weather[0].description
         });
     }
 
-    if (weatherData.ready) { //16. CR - if (weatherData.ready), then return HTML code w/ all data else call API and return "Laoding...";
+    if (weatherData.ready) { 
         return (
             <div className="Weather">
                 <form className="mb-3">
@@ -44,7 +45,7 @@ export default function Weather(props){
                 <div className="overview">
                     <h1>{weatherData.city}</h1>
                     <ul>
-                        <li>Last updated: {weatherData.date}</li>
+                        <li>Last updated: <FormattedDate date={weatherData.date} /></li>
                         <li>{weatherData.description}</li>   
                     </ul>
                 </div>
