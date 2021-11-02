@@ -11,6 +11,25 @@ export default function FormattedDate(props){
         "Saturday"
     ];
     let day = days[props.date.getDay()]; //8. Add days variable to statement so app shows day as word instead of #
+
+    let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+    let month = months[props.date.getMonth()];
+    let date = props.date.getDate();
+    let year = props.date.getFullYear();
+
     let hours = props.date.getHours();
     if (hours < 10) { //10. Fixes hours bug by adding 0 in front of single hours (0-9)
         hours = `0${hours}`;
@@ -22,7 +41,7 @@ export default function FormattedDate(props){
     
     return( //6. if using <div> then using JSX = don't need $ when interpolating, just {}
         <div>
-            {day} {hours}:{minutes}
+            {day} {month} {date}, {year} {hours}:{minutes}
         </div>
     );
 }
