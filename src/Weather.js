@@ -1,11 +1,12 @@
-import React, {useState} from "react"; 
-import FormattedDate from "./FormattedDate"; //4. Import FormattedDate into Weather component
+import React, {useState} from "react";  
+import WeatherInfo from "./WeatherInfo"; //1. Create new component that will receive all the weather data
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props){
     const [weatherData, setWeatherData] = useState({ready: false}); 
-    
+    const [city, setCity] = useState(props.defaultCity); //11. Create new state that will be called for search engine - [city] will be used in apiUrl & [setCity] will be used in function handleCityChange for inputs
+     
     function handleResponse(response){
         console.log(response.data);
         setWeatherData({ 
@@ -14,16 +15,31 @@ export default function Weather(props){
             wind: response.data.wind.speed,
             city: response.data.name,
             humidity: response.data.main.humidity,
-            date: new Date(response.data.dt * 1000), //1. Store API date 
+            date: new Date(response.data.dt * 1000),  
             icon: "https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png",
             description: response.data.weather[0].description
         });
     }
 
-    if (weatherData.ready) { 
+    function search(){ //15. Create search function and move API data inside it. 16. Move API code inside search function
+        const apiKey = "ab6da5069e5bc23122a387b3e99bd05b";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse); //12. change ${props.defaultCity} to ${city} - from useState
+    }
+    
+    function handleSubmit(event) { //8. Create handleSubmit function that will stop pg from reloading & then call search function
+        event.preventDefault();
+        search(); //14. Call search function to make API call only when you submit entry into form
+    }
+
+    function handleCityChange(event){ //10. Create handleCityChange function & this will take data entered into search form 
+        setCity(event.target.value); //13. Updates setCity state for when you type entry in search form
+    }
+
+    if (weatherData.ready) { //7. Create onSubmit={handleSubmit} eventListener in <form> 9. add onChange={handleCityChange} in <input type="search>"
         return (
             <div className="Weather">
-                <form className="mb-3">
+                <form onSubmit={handleSubmit} className="mb-3">
                     <div className="row">
                         <div className="col-9">
                             <input
@@ -31,6 +47,7 @@ export default function Weather(props){
                                 placeholder="Type a city.."
                                 className="form-control"
                                 autoComplete="off"
+                                onChange={handleCityChange}
                             />
                         </div>
                         <div className="col-3">
@@ -42,132 +59,11 @@ export default function Weather(props){
                         </div>
                     </div>
                 </form>
-                <div className="overview">
-                    <h1>{weatherData.city}</h1>
-                    <ul>
-                        <li>Last updated: <FormattedDate date={weatherData.date} /></li>
-                        <li>{weatherData.description}</li>   
-                    </ul>
-                </div>
-                <div className="row">
-                    <div className="col-6">
-                        <div className="clearfix weather-temperature">
-                            <img
-                                src={weatherData.icon}
-                                alt=""
-                                className="float-left"
-                            />
-                            <div className="float-left">
-                                <strong>{Math.round(weatherData.temperature)}</strong> 
-                                <span className="units">
-                                    <a href="/">°C</a> | <a href="/">°F</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-6">
-                        <ul>
-                            <li>Precipitation: 80%</li>
-                            <li>Humidity: {weatherData.humidity}%</li>
-                            <li>Wind: {weatherData.wind}km/h</li>
-                        </ul>
-                    </div>
-                    <div className="weather-forecast">
-                        <div className="row">
-                            <div className="col-2">
-                                <div className="weather-forecast-date">
-                                    Thu
-                                </div>
-                                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" width="42" />
-                                <div className="weather-forecast-temperatures">
-                                    <span className="weather-forecast-temperature-max">
-                                        18°C
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="weather-forecast">
-                        <div className="row">
-                            <div className="col-2">
-                                <div className="weather-forecast-date">
-                                    Fri
-                                </div>
-                                <img src="http://openweathermap.org/img/wn/09d@2x.png" alt="" width="42" />
-                                <div className="weather-forecast-temperatures">
-                                    <span className="weather-forecast-temperature-max">
-                                        24°C
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="weather-forecast">
-                        <div className="row">
-                            <div className="col-2">
-                                <div className="weather-forecast-date">
-                                    Sat
-                                </div>
-                                <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="42" />
-                                <div className="weather-forecast-temperatures">
-                                    <span className="weather-forecast-temperature-max">
-                                        20°C
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="weather-forecast">
-                        <div className="row">
-                            <div className="col-2">
-                                <div className="weather-forecast-date">
-                                    Sun
-                                </div>
-                                <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" width="42" />
-                                <div className="weather-forecast-temperatures">
-                                    <span className="weather-forecast-temperature-max">
-                                        22°C
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="weather-forecast">
-                        <div className="row">
-                            <div className="col-2">
-                                <div className="weather-forecast-date">
-                                    Mon
-                                </div>
-                                <img src="http://openweathermap.org/img/wn/11d@2x.png" alt="" width="42" />
-                                <div className="weather-forecast-temperatures">
-                                    <span className="weather-forecast-temperature-max">
-                                        15°C
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <small>
-                        Project coded by Nastasia Pollas and is{" "}
-                        <a
-                            href="https://github.com/550tealeaves/sc-weather-react-app"
-                            target="blank"
-                        >
-                            open-source code on Github
-                        </a>{" "}
-                        and{" "}
-                        <a href="https://affectionate-easley-dbc23c.netlify.app/" target="blank">
-                            hosted by Netlify
-                        </a>
-                    </small>
-                </div>
+                <WeatherInfo data={weatherData} />                
             </div>
         );
     } else {
-        const apiKey ="ab6da5069e5bc23122a387b3e99bd05b";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
-        
+        search(); //17. Call search function so that it shows weather info instead of return "Loading..."
         return "Loading...";
     }  
 }

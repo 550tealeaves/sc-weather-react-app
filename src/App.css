@@ -34,3 +34,6 @@ li:first-letter {
   max-width: 600px;
   margin: 30px auto;
 }
+.App small{
+  font-size: 11px;
+}
