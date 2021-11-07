@@ -1,8 +1,8 @@
 import React from "react";
-import ReactAnimatedWeather from 'react-animated-weather';
+import ReactAnimatedWeather from 'react-animated-weather'; //9. install in server and then add import line
 
-export default function WeatherIcon(props){ 
-    const codeMapping = {
+export default function WeatherIcon(props){//6. Send props as parameter 
+    const codeMapping = { //13. Create codeMapping (object) and map the OW codes to RAW codes
         "01d": "CLEAR_DAY",
         "01n": "CLEAR_NIGHT",
         "02d": "PARTLY_CLOUDY_DAY",
@@ -23,7 +23,7 @@ export default function WeatherIcon(props){
         "50n": "FOG"
     }
     
-    return (
+    return (//11. copy/paste code from npm.js - 14. Set icon={codeMapping[props.code]} to display icons - change color, size, animation below
         <ReactAnimatedWeather
             icon={codeMapping[props.code]}
             color="pink"
