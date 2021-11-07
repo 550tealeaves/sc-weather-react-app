@@ -8,10 +8,8 @@
 .Weather .overview {
   margin-bottom: 20px;
 }
-.Weather .weather-temperature img {
+.Weather .weather-temperature canvas {
   margin-right: 5px;
-  height: 64px;
-  width: 64px;
 }
 .Weather .weather-temperature strong {
   color: white;

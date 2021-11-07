@@ -1,8 +1,9 @@
 import React from "react";
-import FormattedDate from "./FormattedDate"; //6. Move this import line from Weather.js to here
+import FormattedDate from "./FormattedDate"; 
+import WeatherIcon from "./WeatherIcon"; //6. Import WeatherIcon component
 
-export default function WeatherInfo(props){ //4. Send props to WeatherInfo parameter & paste data from Weather.js - include root component
-    return ( //5. change {weatherData} to {props.data.humidity}
+export default function WeatherInfo(props){ 
+    return ( //4. create WeatherIcon component above <img> and add code (props) and alt and wrap it in <div className="float-left">
         <div className="WeatherInfo">
             <div className="overview">
                 <h1>{props.data.city}</h1>
@@ -14,11 +15,9 @@ export default function WeatherInfo(props){ //4. Send props to WeatherInfo param
             <div className="row">
                 <div className="col-6">
                     <div className="clearfix weather-temperature">
-                        <img
-                            src={props.data.icon}
-                            alt=""
-                            className="float-left"
-                        />
+                        <div className="float-left">
+                            <WeatherIcon code={props.data.icon} />
+                        </div>
                         <div className="float-left">
                             <strong>{Math.round(props.data.temperature)}</strong>
                             <span className="units">
