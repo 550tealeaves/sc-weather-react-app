@@ -1,8 +1,8 @@
 import React from "react"; //2. Create WeatherForecast
 import WeatherIcon from "./WeatherIcon"; //4. Import WeatherIcon 
-import "./WeatherForecast.css"; //5. Create weatherforecast.css 
+import "./WeatherForecast.css"; //5. Import WeatherForecast.css 
 
-export default function WeatherForecast(){
+export default function WeatherForecast(){ //(4) Add WeatherIcon component (8) size as props
     return (
         <div className="WeatherForecast">
             <div className="row">
