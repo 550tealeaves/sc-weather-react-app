@@ -1,12 +1,12 @@
 import React, {useState} from "react";  
-import WeatherInfo from "./WeatherInfo"; //1. Create new component that will receive all the weather data
-import WeatherForecast from "./WeatherForecast";
+import WeatherInfo from "./WeatherInfo"; 
+import WeatherForecast from "./WeatherForecast"; //1. Import WeatherForecast.js
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props){
     const [weatherData, setWeatherData] = useState({ready: false}); 
-    const [city, setCity] = useState(props.defaultCity); //11. Create new state that will be called for search engine - [city] will be used in apiUrl & [setCity] will be used in function handleCityChange for inputs
+    const [city, setCity] = useState(props.defaultCity); 
      
     function handleResponse(response){
         console.log(response.data);
