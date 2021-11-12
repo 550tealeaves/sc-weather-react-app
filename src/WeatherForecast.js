@@ -11,7 +11,7 @@ export default function WeatherForecast(props){ //11. Send coordinates as props
     let apiKey = "ab6da5069e5bc23122a387b3e99bd05b"; //3. c/p apiKey from Weather.js
     let longitude = props.coordinates.lon; //12. Store API path of object as longitude/latitude variables 
     let latitude = props.coordinates.lat; //12. Store API path of object as longitude/latitude variables
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${apiKey}&units=metric`; //2. Store API call in variable  //5. Interpolate #3 & #4 into apiUrl
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${apiKey}&units=metric`; //2. Store API call in variable, set units to metric  //5. Interpolate #3 & #4 into apiUrl
 
     axios.get(apiUrl).then(handleResponse);//6. Make axios call and call function
     
