@@ -14,13 +14,18 @@ export default function WeatherForecast(props){//Send coordinates as props
     }
     
     if (loaded) {//9. Add <WeatherForecastDay data={forecast[0]}/> (data sent as props) under <div className="col"> //10. Cut/paste the original weather JSX (max/min temp and date/time) and move to WFD.js  
-        console.log(forecast);
         return (
         <div className="WeatherForecast">
             <div className="row">
-                <div className="col">
-                    <WeatherForecastDay data={forecast[0]} />     
-                </div>
+                {forecast.map(function (dailyForecast, index) { //1. Use map to loop through each day of the array //2. Move <WFD data={}/> into return function of #1 //3. Change data={forecast[0]} to {dailyForecast} to show all 8 days instead of the first day 8x
+                    if (index < 5) { //4. Use if statement to hide indexes greater than 5 = only show 5-days
+                        return (
+                            <div className="col" key={index}>
+                                <WeatherForecastDay data={dailyForecast} />     
+                            </div>
+                        );
+                    }
+                })}   
             </div>
         </div>
     );
