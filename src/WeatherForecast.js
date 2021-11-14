@@ -17,8 +17,8 @@ export default function WeatherForecast(props){//Send coordinates as props
         return (
         <div className="WeatherForecast">
             <div className="row">
-                {forecast.map(function (dailyForecast, index) { //1. Use map to loop through each day of the array //2. Move <WFD data={}/> into return function of #1 //3. Change data={forecast[0]} to {dailyForecast} to show all 8 days instead of the first day 8x
-                    if (index < 5) { //4. Use if statement to hide indexes greater than 5 = only show 5-days
+                {forecast.map(function (dailyForecast, index) { 
+                    if (index < 5) { 
                         return (
                             <div className="col" key={index}>
                                 <WeatherForecastDay data={dailyForecast} />     
