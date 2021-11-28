@@ -23,7 +23,7 @@ export default function WeatherForecast(props){//Send coordinates as props
         let apiKey = "ab6da5069e5bc23122a387b3e99bd05b"; //C/P apiKey from Weather.js
         let longitude = props.coordinates.lon; //Store API path of object as longitude/latitude variables 
         let latitude = props.coordinates.lat; //Store API path of object as longitude/latitude variables
-        let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${apiKey}&units=metric`; //Store API call in variable, set units to metric  //5. Interpolate #3 & #4 into apiUrl
+        let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${apiKey}&units=imperial`; //Store API call in variable, set units to metric  //5. Interpolate #3 & #4 into apiUrl
 
         axios.get(apiUrl).then(handleResponse);//Make axios call and call function
     }
