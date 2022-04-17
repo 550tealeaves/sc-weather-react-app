@@ -22,6 +22,7 @@
   position: relative;
   font-size: 16px;
   top: -34px;
+  color: white;
 }
 
 .Weather .weather-temperature .active {
@@ -50,4 +51,12 @@
 
 .Weather .weather-forecast-temperatures {
   font-size: 13px;
+}
+
+.btn-color{
+  background-color: rgba(252, 92, 159, 0.984);
+}
+
+.btn-edit{
+  background-color: rgb(77, 147, 167);
 }

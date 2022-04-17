@@ -56,23 +56,23 @@ export default function Weather(props){
             <div className="Weather">
                 <form onSubmit={handleSubmit} className="mb-3">
                     <div className="row">
-                        <div className="col-6">
+                        <div className="col-sm-6">
                             <input
                                 type="search"
                                 placeholder="Type a city.."
-                                className="form-control"
+                                className="form-control shadow-sm"
                                 autoComplete="off"
                                 onChange={handleCityChange}
                             />
                         </div>
-                        <div className="col-3">
+                        <div className="col-sm-3">
                             <input
                                 type="submit"
                                 value="Search"
-                                className="btn btn-primary shadow-sm w-100"
+                                className="btn btn-color text-white shadow-sm w-100"
                             />
                         </div>
-                        <div className="col-3">
+                        <div className="col-sm-3">
                             <WeatherHere getCurrentLocation={getCurrentLocation} />
                         </div>
 
