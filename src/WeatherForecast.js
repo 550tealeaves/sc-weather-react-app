@@ -35,7 +35,7 @@ export default function WeatherForecast(props){//Send coordinates as props
                 {forecast.map(function (dailyForecast, index) { 
                     if (index < 5) { 
                         return (
-                            <div className="col-md" key={index}>
+                            <div className="col" key={index}>
                                 <WeatherForecastDay data={dailyForecast} />     
                             </div>
                         );
