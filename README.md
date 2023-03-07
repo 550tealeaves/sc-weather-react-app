@@ -1,4 +1,4 @@
-#Final project for SheCodes React workshop
+# Final project for SheCodes React workshop
 - used React to create functional weather app with animated icons, geolocation, and current location with major weather metrics - temperature, wind, and humidity
 
 
