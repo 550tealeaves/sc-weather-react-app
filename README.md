@@ -1,3 +1,10 @@
+#Final project for SheCodes React workshop
+- used React to create functional weather app with animated icons, geolocation, and current location with major weather metrics - temperature, wind, and humidity
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
